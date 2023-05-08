@@ -1,0 +1,41 @@
+﻿<Page x:Class="DictionaryTranslator.Pages.MainContentSubpages.FavoritesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DictionaryTranslator.Pages.MainContentSubpages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      FontSize="15"
+      Title="FavoritesPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox x:Name="TextBox_CustomQuery" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" AcceptsReturn="True" Margin="5 5 0 0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="AliceBlue"/>
+        <Button Click="Button_SelectCustomQuery" Content="SELECT" FontSize="15" Margin="5 5 5 0" Grid.Row="0" Grid.Column=" 2" BorderThickness="0" Background="SteelBlue" Foreground="White"/>
+
+        <ComboBox x:Name="ComboBox_FavoritesLists" Margin="5 5 0 0" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1" Background="AliceBlue"/>
+        <Button Click="Button_SelectFavoriteList"  Content="SELECT LIBRARY" FontSize="15" Margin="5 5 0 0" Grid.Row="1" Grid.Column="1" BorderThickness="0" Background="SteelBlue" Foreground="White"/>
+        <Grid Grid.Row="1" Grid.Column="2" Margin="5 5 5 0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="TextBox_NewLibraryName" Grid.Row="0" Padding="2"/>
+            <Button Click="Button_AddNewLibrary" Grid.Row="1" Content="ADD" FontSize="15" BorderThickness="0" Background="SteelBlue" Foreground="White"/>
+        </Grid>
+
+        <DataGrid x:Name="DataGrid_DataView" Margin="5" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Background="PowderBlue"/>
+    </Grid>
+</Page>

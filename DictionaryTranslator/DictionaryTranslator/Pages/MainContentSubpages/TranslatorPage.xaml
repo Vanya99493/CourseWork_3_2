@@ -1,0 +1,62 @@
+﻿<Page x:Class="DictionaryTranslator.Pages.MainContentSubpages.TranslatorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DictionaryTranslator.Pages.MainContentSubpages"
+      mc:Ignorable="d" 
+      FontSize="15"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TranslatorPage">
+    <!--<Page.Resources>
+        <Style x:Key="{x:Type ComboBox}" TargetType="ComboBox">
+            <Setter Property="Background" Value="LightBlue"/>
+        </Style>
+    </Page.Resources>-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="14*" x:Name="Row_InputOutputBlocks"/>
+            <RowDefinition Height="2*" x:Name="Row_CategoriesController"/>
+            <RowDefinition Height="2*" x:Name="Row_AddNewLanguage"/>
+            <RowDefinition Height="2*" x:Name="Row_AddToFavorite"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Button Content="TRANSLATE" x:Name="Button_ExecuteAction" Click="ExecuteAction" Grid.Row="0" Grid.Column="0" Padding="20 15" Margin="10" BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" Background="SteelBlue" Foreground="White"/>
+        <Button Content="TO ADD" x:Name="Button_SwitchTranslateMode" Click="SwitchTranslateMode" Grid.Row="0" Grid.Column="1" Padding="20 15" Margin="10" BorderThickness="0" HorizontalAlignment="Right" VerticalAlignment="Center" Background="SteelBlue" Foreground="White"/>
+
+        <ComboBox x:Name="ComboBox_SourceWordLanguage" Grid.Row="1" Grid.Column="0" Margin="10 5"/>
+        <ComboBox x:Name="ComboBox_TargetWordLanguage" Grid.Row="1" Grid.Column="1" Margin="10 5"/>
+
+        <TextBox x:Name="TextBox_EnterSourceWord" Grid.Row="2" Grid.Column="0"  TextWrapping="Wrap" Padding="10" Margin="10" Background="LightCyan" TextChanged="ChangeSourceWordField"/>
+        <TextBox x:Name="TextBox_EnterTargetWord" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Padding="10" Margin="10" Visibility="Collapsed" Background="LightCyan"/>
+        <TextBlock  x:Name="TextBlock_OutputTargetWord" Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Padding="10" Margin="10" Visibility="Visible" Background="LightCyan" />
+
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5 0 5 5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox x:Name="ComboBox_SourceWordCategory" Grid.Column="0" Margin="0 0 5 0"/>
+            <TextBox x:Name="TextBox_NewCategoryField" Grid.Column="1" Background="LightCyan"/>
+            <Button Click="Button_AddNewCategory" Grid.Column="2" Content="ADD CATEGORY" FontSize ="15" BorderThickness="0"  Background="SteelBlue" Foreground="White"/>
+            <ComboBox x:Name="ComboBox_TargetWordCategory" Grid.Column="3" Margin="5 0 0 0"/>
+        </Grid>
+        
+        <DockPanel Grid.Row="4" Grid.ColumnSpan="2">
+            <Button Click="Button_AddNewLanguage" Content="ADD LANGUAGE" DockPanel.Dock="Left" Padding="8 4" Margin="5 0 5 2" BorderThickness="0"  Background="SteelBlue" Foreground="White" />
+            <TextBox x:Name="TextBox_NewLanguageField" DockPanel.Dock="Left" TextWrapping="Wrap" Background="LightCyan" Padding="8 4" Margin="0 0 5 2"/>
+        </DockPanel>
+
+        <ComboBox x:Name="ComboBox_Libraries" Grid.Row="5" Grid.Column="0" Padding="8 4" Margin="5 2" Background="AliceBlue"/>
+        <Button Content="SAVE TO FAVORITE" Click="Button_SaveToFavorite" Grid.Row="5" Grid.Column="1" Padding="10 4" Margin="0 2" FontSize="15" BorderThickness="0" HorizontalAlignment="Left" Background="SteelBlue" Foreground="White"/>
+    </Grid>
+</Page>
