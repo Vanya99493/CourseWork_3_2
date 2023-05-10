@@ -65,13 +65,18 @@ namespace DictionaryTranslator.Pages.MainContentSubpages
                             MessageBox.Show("Error. Wrong parameters");
                         }
                         _dataController.AddTranslation(TextBox_EnterSourceWord.Text, TextBox_EnterTargetWord.Text, ComboBox_SourceWordLanguage.SelectedItem.ToString(), ComboBox_TargetWordLanguage.SelectedItem.ToString());
-                        _dataController.AddCategoryToWord(TextBox_EnterSourceWord.Text, ComboBox_SourceWordCategory.SelectedItem.ToString());
-                        _dataController.AddCategoryToWord(TextBox_EnterTargetWord.Text, ComboBox_TargetWordCategory.SelectedItem.ToString());
+                        
                     }
                     catch (NullReferenceException)
                     {
                         MessageBox.Show("Error. Wrong parameters");
                     }
+                    try
+                    {
+                        _dataController.AddCategoryToWord(TextBox_EnterSourceWord.Text, ComboBox_SourceWordCategory.SelectedItem.ToString());
+                        _dataController.AddCategoryToWord(TextBox_EnterTargetWord.Text, ComboBox_TargetWordCategory.SelectedItem.ToString());
+                    }
+                    catch (NullReferenceException){}
                     break;
             }
         }

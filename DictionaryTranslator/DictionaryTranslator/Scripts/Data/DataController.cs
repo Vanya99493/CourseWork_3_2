@@ -101,6 +101,8 @@ namespace DictionaryTranslator.Scripts.Data
         public bool GetTranslation(out string targetWord, string sourceWord, string sourceWordLanguage, string targetWordLanguage)
         {
             string query = "SELECT w.word AS source_word, t.word AS target_word, sl.language AS source_word_language, tl.language AS target_word_language FROM translations tr INNER JOIN words w ON tr.source_word_id = w.word_id INNER JOIN words t ON tr.target_word_id = t.word_id INNER JOIN languages sl ON w.language_id = sl.language_id INNER JOIN languages tl ON t.language_id = tl.language_id;";
+            StringBuilder translation = new StringBuilder();
+            bool isTranslate = false;
 
             SQLiteCommand sqlCommand = new SQLiteCommand(query, _sqlConnection);
             SQLiteDataReader sqlDataReader = sqlCommand.ExecuteReader();
@@ -110,19 +112,33 @@ namespace DictionaryTranslator.Scripts.Data
                     sqlDataReader["source_word_language"].ToString().ToLower() == sourceWordLanguage.ToLower() && 
                     sqlDataReader["target_word_language"].ToString().ToLower() == targetWordLanguage.ToLower())
                 {
-                    targetWord = sqlDataReader["target_word"].ToString().ToLower();
-                    return true;
+                    if (!isTranslate)
+                    {
+                        translation.Append(sqlDataReader["target_word"].ToString().ToLower());
+                        isTranslate = true;
+                    }
+                    else
+                    {
+                        translation.Append(",\n" + sqlDataReader["target_word"].ToString().ToLower());
+                    }
                 } else if (sqlDataReader["target_word"].ToString().ToLower() == sourceWord.ToLower() &&
                     sqlDataReader["target_word_language"].ToString().ToLower() == sourceWordLanguage.ToLower() &&
                     sqlDataReader["source_word_language"].ToString().ToLower() == targetWordLanguage.ToLower())
                 {
-                    targetWord = sqlDataReader["source_word"].ToString().ToLower();
-                    return true;
+                    if (!isTranslate)
+                    {
+                        translation.Append(sqlDataReader["source_word"].ToString().ToLower());
+                        isTranslate = true;
+                    }
+                    else
+                    {
+                        translation.Append(",\n" + sqlDataReader["source_word"].ToString().ToLower());
+                    }
                 }
             }
             sqlDataReader.Close();
-            targetWord = "";
-            return false;
+            targetWord = translation.ToString();
+            return isTranslate;
         }
 
         public void AddTranslation(string sourceWord, string targetWord, string sourceWordLanguage, string targetWordLanguage)
